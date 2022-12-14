@@ -61,7 +61,7 @@ pipeline {
                         sshPublisherDesc(configName: DEPLOY_TARGET_1, 
                                          transfers: [
                                              sshTransfer(cleanRemote: false, excludes: '',
-                                                         execCommand: './core-cpu1',
+                                                         //execCommand: './core-cpu1',
                                                          execTimeout: 120000, 
                                                          flatten: false, 
                                                          makeEmptyDirs: false, 
