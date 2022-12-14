@@ -22,7 +22,7 @@ pipeline {
             steps {
                 sh 'make distclean'
                 sh 'env'
-                sh 'make SIMUATION=cpu1 prep'
+                sh 'make SIMUATION=native prep'
                 sh 'env'
             }
         } 
