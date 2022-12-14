@@ -25,7 +25,7 @@ pipeline {
                 //sh 'make SIMUATION=cpu1 prep'
                 //sh 'env'
             }
-        } /*
+        } 
         stage('Build') {
             steps {
                 sh 'make'
