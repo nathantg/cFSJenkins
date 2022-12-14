@@ -70,7 +70,21 @@ pipeline {
                                                          remoteDirectorySDF: false, 
                                                          removePrefix: '', 
                                                          sourceFiles: SOURCE_DIR)], 
-                                         usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)]) /*
+                                         usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)
+                                             sshTransfer(cleanRemote: false, excludes: '',
+                                                         execCommand: './core-cpu1'
+                                                         execTimeout: 120000, 
+                                                         flatten: false, 
+                                                         makeEmptyDirs: false, 
+                                                         noDefaultExcludes: false, 
+                                                         patternSeparator: '[, ]+', 
+                                                         remoteDirectory: '${REMOTE_DIR}/build/exe/cpu1', 
+                                                         remoteDirectorySDF: false, 
+                                                         removePrefix: '', 
+                                                         sourceFiles: '')], 
+                                         usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)
+                    
+                    ]) /*
                 sshPublisher(
                     continueOnError: false, failOnError: true,
                     publishers: [
