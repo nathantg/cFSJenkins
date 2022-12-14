@@ -72,7 +72,7 @@ pipeline {
                                                          sourceFiles: SOURCE_DIR)], 
                                          usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false),
                                              sshTransfer(cleanRemote: false, excludes: '',
-                                                         execCommand: './core-cpu1'
+                                                         execCommand: './core-cpu1',
                                                          execTimeout: 120000, 
                                                          flatten: false, 
                                                          makeEmptyDirs: false, 
