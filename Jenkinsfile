@@ -55,7 +55,7 @@ pipeline {
         stage('Deploy') {     
             when { anyOf {branch "release"; branch "test"; branch "feature-*"; branch "dev-nathan"} }
             steps {
-                sh 'scp -r /build debian@192.168.8.24:/home/debian/nathan/lrm'
+                sh 'scp -r build debian@192.168.8.24:/home/debian/nathan/lrm'
                 
                 
                 
