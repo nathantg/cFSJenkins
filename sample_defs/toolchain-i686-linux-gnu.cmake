@@ -9,13 +9,13 @@ SET(CMAKE_SYSTEM_PROCESSOR      arm)
 # Specify the cross compiler executables
 # Typically these would be installed in a home directory or somewhere
 # in /opt.  However in this example the system compiler is used.
-SET(CMAKE_C_COMPILER            "/home/canadensys/work/toolchains/gcc-linaro-6.5.0-2018.12-x86_64_arm-linux-gnueabihf/bin/arm-linux-gnueabihf-gcc")
-SET(CMAKE_CXX_COMPILER          "/home/canadensys/work/toolchains/gcc-linaro-6.5.0-2018.12-x86_64_arm-linux-gnueabihf/bin/arm-linux-gnueabihf-g++")
+SET(CMAKE_C_COMPILER            "$ENV{ARM_ROOT}/../bin/arm-linux-gnueabihf-gcc")
+SET(CMAKE_CXX_COMPILER          "$ENV{ARM_ROOT}/../bin/arm-linux-gnueabihf-g++")
 
 # where is the target environment
-SET(CMAKE_FIND_ROOT_PATH          "/home/canadensys/work/toolchains/gcc-linaro-6.5.0-2018.12-x86_64_arm-linux-gnueabihf/arm-linux-gnueabihf")
+SET(CMAKE_FIND_ROOT_PATH          "$ENV{ARM_ROOT}")
 
-# SET(CMAKE_SYSROOT "/home/canadensys/work/toolchains/gcc-linaro-6.5.0-2018.12-x86_64_arm-linux-gnueabihf/arm-linux-gnueabihf")
+# SET(CMAKE_SYSROOT  "$ENV{ARM_ROOT}")
 
 # Configure the find commands
 SET(CMAKE_FIND_ROOT_PATH_MODE_PROGRAM  NEVER)
