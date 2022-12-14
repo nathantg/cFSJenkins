@@ -6,7 +6,7 @@ pipeline {
         ROVER_TYPE = 'lrm'
         /* Change if location of cross compiler is changed */
         //ARM_ROOT = '/home/canadensys/work/toolchains/gcc-linaro-6.5.0-2018.12-x86_64_arm-linux-gnueabihf/arm-linux-gnueabihf'
-        ARM_ROOT = '/home/canadensys/work/toolchains/gcc-linaro-6.5.0-2018.12-x86_64_arm-linux-gnueabihf/arm-linux-gnueabihf'
+        ARM_ROOT = '/home/canadensys/work/toolchains/gcc-linaro-6.5.0-2018.12-x86_64_arm-linux-gnueabihf'
         /* Targets for build artifacts to be sent to via SSH */
         DEPLOY_TARGET_1 = 'Nathan Beaglebone'
         DEPLOY_TARGET_2 = 'Beaglebone 2'
@@ -21,9 +21,9 @@ pipeline {
         stage('Preparation') {
             steps {
                 sh 'make distclean'
-                //sh 'env'
-                //sh 'make SIMUATION=cpu1 prep'
-                //sh 'env'
+                sh 'env'
+                sh 'make SIMUATION=cpu1 prep'
+                sh 'env'
             }
         } 
         stage('Build') {
