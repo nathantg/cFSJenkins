@@ -55,7 +55,11 @@ pipeline {
         stage('Deploy') {     
             when { anyOf {branch "release"; branch "test"; branch "feature-*"; branch "dev-nathan"} }
             steps {
-                sshPublisher(
+                sh 'scp -r /build debian@192.168.8.24:/home/debian/nathan/lrm'
+                
+                
+                
+                /*sshPublisher(
                     continueOnError: false, failOnError: true,
                     publishers: [
                         sshPublisherDesc(configName: DEPLOY_TARGET_1, 
@@ -81,11 +85,11 @@ pipeline {
                                                          remoteDirectory: '${REMOTE_DIR}/build/exe/cpu1', 
                                                          remoteDirectorySDF: false, 
                                                          removePrefix: '', 
-                                                         sourceFiles: '')       */                                        
+                                                         sourceFiles: '')                                            
                                          ], 
-                                         usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)
+                                         usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false) 
                     ]
-                ) 
+                ) */
             }
         }
     }
