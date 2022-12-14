@@ -54,7 +54,7 @@ pipeline {
         }
         stage('Deploy') {     
             when { anyOf {branch "release"; branch "test"; branch "feature-*"; branch "dev-nathan"} }
-            steps { echo 'Deploy' /*
+            steps {
                 sshPublisher(
                     continueOnError: false, failOnError: true,
                     publishers: [
