@@ -50,7 +50,7 @@ pipeline {
                 echo 'make icov'
             }
         }
-        stage('Deploy') {     /*
+        stage('Deploy') {     
             when { anyOf {branch "release"; branch "test"; branch "feature-*"; branch "dev-nathan"} }
             steps { 
                 sshPublisher(
