@@ -21,7 +21,7 @@ pipeline {
             steps {
                 sh 'make distclean'
                 sh 'env'
-                sh 'make SIMUATION=cup1 prep'
+                sh 'make SIMUATION=cpu1 prep'
                 sh 'env'
             }
         }
