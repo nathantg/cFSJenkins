@@ -4,6 +4,7 @@ pipeline {
     environment {
         TO_PORT = '1238'
         ROVER_TYPE = 'lrm'
+        COMPILER = 'cpu1'
         /* Change if location of cross compiler is changed */
         //ARM_ROOT = '/home/canadensys/work/toolchains/gcc-linaro-6.5.0-2018.12-x86_64_arm-linux-gnueabihf/arm-linux-gnueabihf'
         ARM_ROOT = '/home/canadensys/work/toolchains/gcc-linaro-6.5.0-2018.12-x86_64_arm-linux-gnueabihf/arm-linux-gnueabihf'
@@ -15,6 +16,7 @@ pipeline {
         REMOTE_DIR = '/nathan/lrm/Jenkins_cFS_deploy'
         /* The directory relative to the Jenkins workspace where the files to be deployed to target are located */
         SOURCE_DIR = 'build/**/*'
+        
     }
     
     stages {
@@ -22,7 +24,7 @@ pipeline {
             steps {
                 sh 'make distclean'
                 sh 'env'
-                sh 'make SIMUATION=native prep'
+                sh 'make SIMUATION=$COMPILER prep'
                 sh 'env'
             }
         } 
