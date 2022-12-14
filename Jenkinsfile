@@ -16,7 +16,7 @@ pipeline {
         /* The directory relative to the Jenkins workspace where the files to be deployed to target are located */
         SOURCE_DIR = 'build/**/*'
     }
-/*
+    
     stages {
         stage('Preparation') {
             steps {
