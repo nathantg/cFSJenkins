@@ -21,11 +21,11 @@ pipeline {
         stage('Preparation') {
             steps {
                 sh 'make distclean'
-                sh 'env'
-                sh 'make SIMUATION=cpu1 prep'
-                sh 'env'
+                //sh 'env'
+                //sh 'make SIMUATION=cpu1 prep'
+                //sh 'env'
             }
-        }
+        } /*
         stage('Build') {
             steps {
                 sh 'make'
