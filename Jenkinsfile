@@ -34,9 +34,7 @@ pipeline {
         stage('Preparation') {
             steps {
                 sh 'make distclean'
-                sh 'env'
                 sh 'make SIMUATION=$COMPILER prep'
-                sh 'env'
             }
         } 
         stage('Build') {
