@@ -35,6 +35,11 @@ pipeline {
             steps {
                 sh 'make distclean'
                 sh 'make SIMUATION=$COMPILER prep'
+                sh '''
+                  mkdir -p .sonar
+                  curl -sSLo .sonar/build-wrapper-linux-x86.zip ${SONARQUBE_URL}/static/cpp/build-wrapper-linux-x86.zip 
+                  unzip -o .sonar/build-wrapper-linux-x86.zip -d .sonar/
+                '''
             }
         } 
         stage('Build') {
@@ -46,7 +51,7 @@ pipeline {
         stage('Static Code Analysis') {
             when { anyOf {branch "release"; branch "test"; branch "sonarqube"} }
             steps {
-                echo 'Perform static code analysis'
+                echo 'Static Code Analysis'
             }
         }
         stage('Unit Testing') {
