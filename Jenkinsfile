@@ -1,6 +1,10 @@
 pipeline {
     agent any
     
+    options {
+        skipDefaultCheckout(true)
+    }
+    
     environment {
         TO_PORT = '1238'
         ROVER_TYPE = 'lrm'
@@ -16,10 +20,17 @@ pipeline {
         REMOTE_DIR = '/nathan/lrm/Jenkins_cFS_deploy'
         /* The directory relative to the Jenkins workspace where the files to be deployed to target are located */
         SOURCE_DIR = 'build/**/*'
-        
+        /* SonarQube Server URL */
+        SONARQUBE_URL = 'http://192.168.8.29:9000' 
     }
     
     stages {
+        stage('CheckoutSCM') {
+            steps {
+                cleanWs()
+                checkout scm
+            }
+        }
         stage('Preparation') {
             steps {
                 sh 'make distclean'
