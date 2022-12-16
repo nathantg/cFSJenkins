@@ -44,7 +44,7 @@ pipeline {
             }
         }
         stage('Static Code Analysis') {
-            when { anyOf {branch "release"; branch "test"} }
+            when { anyOf {branch "release"; branch "test"; branch "sonarqube"} }
             steps {
                 echo 'Perform static code analysis'
             }
