@@ -52,7 +52,12 @@ pipeline {
         stage('Static Code Analysis') {
             when { anyOf {branch "release"; branch "test"; branch "sonarqube"} }
             steps {
-                echo 'Static Code Analysis'
+                script {
+                    def scannerHome = tool 'SonarScanner'; // Name of the SonarQube Scanner you created in "Global Tool Configuration" section
+                    withSonarQubeEnv() {
+                        sh "${scannerHome}/sonar-scanner-4.7.0.2747-linux/bin/sonar-scanner"
+                    }
+                }
             }
         }
         stage('Unit Testing') {
