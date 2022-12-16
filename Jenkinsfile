@@ -44,9 +44,9 @@ pipeline {
         } 
         stage('Build') {
             steps {
-                // sh '.sonar/build-wrapper-linux-x86/build-wrapper-linux-x86-64 --out-dir bw-output cmake --build build/ --config Release'
-                sh 'make'
-                sh 'make install'
+                sh '.sonar/build-wrapper-linux-x86/build-wrapper-linux-x86-64 --out-dir bw-output cmake --build build/ --config Release'
+                //sh 'make'
+                //sh 'make install'
             }
         }
         stage('Static Code Analysis') {
