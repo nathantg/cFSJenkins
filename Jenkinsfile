@@ -44,7 +44,7 @@ pipeline {
             }
         }
         stage('Static Code Analysis') {
-            when { anyOf {branch "release"; branch "test"; branch "sonarqube"; branch "dev-nathan"} }
+            when { anyOf {branch "release"; branch "test"; branch "sonarqube"; branch "dev-*"} }
             steps {
                 script {
                     def scannerHome = tool 'SonarScanner'; // Name of the SonarQube Scanner you created in "Global Tool Configuration" section
