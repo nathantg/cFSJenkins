@@ -44,7 +44,7 @@ pipeline {
         } 
         stage('Build') {
             steps {
-                sh '.sonar/build-wrapper-linux-x86/build-wrapper-linux-x86-64 --out-dir build/ make &&  make install'
+                sh '.sonar/build-wrapper-linux-x86/build-wrapper-linux-x86-64 --out-dir bw-output make && make install'
                 //sh '.sonar/build-wrapper-linux-x86/build-wrapper-linux-x86-64 --out-dir build/ make install'
                 //sh 'make'
                 //sh 'make install'
