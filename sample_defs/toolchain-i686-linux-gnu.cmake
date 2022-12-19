@@ -9,11 +9,11 @@ SET(CMAKE_SYSTEM_PROCESSOR      arm)
 # Specify the cross compiler executables
 # Typically these would be installed in a home directory or somewhere
 # in /opt.  However in this example the system compiler is used.
-SET(CMAKE_C_COMPILER            "$ENV{ARM_ROOT}/../bin/arm-linux-gnueabihf-gcc")
+SET(CMAKE_C_COMPILER            "/usr/bin/cc")
 SET(CMAKE_CXX_COMPILER          "$ENV{ARM_ROOT}/../bin/arm-linux-gnueabihf-g++")
 
 # where is the target environment
-SET(CMAKE_FIND_ROOT_PATH          "$ENV{ARM_ROOT}")
+SET(CMAKE_FIND_ROOT_PATH          "/usr/bin/")
 
 # SET(CMAKE_SYSROOT  "$ENV{ARM_ROOT}")
 
