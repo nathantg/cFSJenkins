@@ -8,7 +8,7 @@ pipeline {
     environment {
         TO_PORT = '1238'
         ROVER_TYPE = 'lrm'
-        COMPILER = 'native'
+        COMPILER = 'cpu1'
         /* Change if location of cross compiler is changed */
         //ARM_ROOT = '/home/canadensys/work/toolchains/gcc-linaro-6.5.0-2018.12-x86_64_arm-linux-gnueabihf/arm-linux-gnueabihf'
         ARM_ROOT = '/home/canadensys/work/toolchains/gcc-linaro-6.5.0-2018.12-x86_64_arm-linux-gnueabihf/arm-linux-gnueabihf'
@@ -64,7 +64,7 @@ pipeline {
                 sshPublisher(
                     continueOnError: false, failOnError: true,
                     publishers: [
-                        sshPublisherDesc(configName: DEPLOY_TARGET_4, 
+                        sshPublisherDesc(configName: DEPLOY_TARGET_1, 
                                          transfers: [
                                              sshTransfer(cleanRemote: false, excludes: '',
                                                          execTimeout: 120000, 
