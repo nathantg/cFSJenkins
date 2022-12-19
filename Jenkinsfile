@@ -54,7 +54,7 @@ pipeline {
             }
         }
         stage('Deploy') {     
-            when { anyOf {branch "release"; branch "test"; branch "feature-*"} }
+            when { anyOf {branch "feature-*"; branch "dev-*"} }
             steps {
                 sshPublisher(
                     continueOnError: false, failOnError: true,
@@ -78,13 +78,13 @@ pipeline {
             }
         }
         stage('Unit Testing') {
-            when { anyOf {branch "release"; branch "test"; branch "feature-*"} }
+            when { anyOf {branch "feature-*"; branch "dev-*"} }
             steps {
                 echo 'make test'
             }
         }
         stage('Coverage Testing') {
-            when { anyOf {branch "release"; branch "test"; branch "feature-*"} }
+            when { anyOf {branch "feature-*"; branch "dev-*"} }
             steps {
                 echo 'make icov'
             }
