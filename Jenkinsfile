@@ -43,7 +43,6 @@ pipeline {
             }
         }
         stage('Static Code Analysis') {
-            when { anyOf {branch "release"; branch "test"; branch "sonarqube"; branch "dev-nathan"} }
             steps {
                 script {
                     def scannerHome = tool 'SonarScanner'; // Name of the SonarQube Scanner you created in "Global Tool Configuration" section
@@ -54,7 +53,7 @@ pipeline {
             }
         }
         stage('Deploy') {     
-            when { anyOf {branch "release"; branch "test"; branch "feature-*"; branch "dev-nathan"; branch "sonarqube"} }
+            when { anyOf {branch "release"; branch "test"; branch "feature-*"; branch "dev-*"} }
             steps {
                 sshPublisher(
                     continueOnError: false, failOnError: true,
@@ -89,13 +88,13 @@ pipeline {
             }
         }
         stage('Unit Testing') {
-            when { anyOf {branch "release"; branch "test"} }
+            when { anyOf {branch "release"; branch "test"; branch "feature-*"} }
             steps {
                 echo 'make test'
             }
         }
         stage('Coverage Testing') {
-            when { anyOf {branch "release"; branch "test"} }
+            when { anyOf {branch "release"; branch "test"; branch "feature-*"} }
             steps {
                 echo 'make icov'
             }
