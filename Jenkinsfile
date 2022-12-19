@@ -19,7 +19,7 @@ pipeline {
         /* Directory on the target relative to the user directory to send the build artifacts to */
         REMOTE_DIR = '/nathan/lrm/Jenkins_cFS_deploy'
         /* The directory relative to the Jenkins workspace where the files to be deployed to target are located */
-        SOURCE_DIR = 'build/**/*'
+        SOURCE_DIR = '**/*'
         /* SonarQube Server URL */
         SONARQUBE_URL = 'http://192.168.8.29:9000' 
     }
