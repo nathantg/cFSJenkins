@@ -68,7 +68,7 @@ pipeline {
                     remote.passwaord = 'temppwd'
                     remote.allowAnyHosts = true
                     
-                    sshCommand remote:remote, command: "ls -l"
+                    sshCommand remote:remote, command: "cd"
                 }
                 //sh 'scp -r build debian@192.168.8.24:/home/debian/nathan/lrm'
                 /*
