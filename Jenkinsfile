@@ -64,44 +64,7 @@ pipeline {
                 remote.user = 'debian'
                 remote.password = 'temppwd'
                 remote.allowAnyHosts = true
-        stage('Deploy') {     
-            when { anyOf {branch "release"; branch "test"; branch "feature-*"; branch "dev-nathan"} }
-            sshCommand remote: remote, command: "ls"
-            /*steps {
-                /*
-                sshPublisher(
-                    continueOnError: false, failOnError: true,
-                    publishers: [
-                        sshPublisherDesc(configName: DEPLOY_TARGET_1, 
-                                         transfers: [
-                                             sshTransfer(cleanRemote: false, excludes: '',
-                                                         execTimeout: 120000, 
-                                                         flatten: false, 
-                                                         makeEmptyDirs: false, 
-                                                         noDefaultExcludes: false, 
-                                                         patternSeparator: '[, ]+', 
-                                                         remoteDirectory: REMOTE_DIR, 
-                                                         remoteDirectorySDF: false, 
-                                                         removePrefix: '', 
-                                                         sourceFiles: SOURCE_DIR), 
-                                             sshTransfer(cleanRemote: false, excludes: '',
-                                                         execCommand: './core-cpu1',
-                                                         execTimeout: 120000, 
-                                                         flatten: false, 
-                                                         makeEmptyDirs: false, 
-                                                         noDefaultExcludes: false, 
-                                                         patternSeparator: '[, ]+', 
-                                                         remoteDirectory: '${REMOTE_DIR}/build/exe/cpu1', 
-                                                         remoteDirectorySDF: false, 
-                                                         removePrefix: '', 
-                                                         sourceFiles: '')                                        
-                                         ], 
-                                         usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false) 
-                    ]
-                ) */
-            }
         }
-    }
         stage('Unit Testing') {
             when { anyOf {branch "release"; branch "test"} }
             steps {
