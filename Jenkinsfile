@@ -33,7 +33,7 @@ pipeline {
         stage('Preparation') {
             steps {
                 sh 'make distclean'
-                sh 'make SIMUATION=$COMPILER prep'
+                sh 'make SIMUATION=$COMPILER ENABLE_UNIT_TESTS=true prep'
                 sh '''
                   mkdir -p .sonar
                   curl -sSLo .sonar/build-wrapper-linux-x86.zip ${SONARQUBE_URL}/static/cpp/build-wrapper-linux-x86.zip 
