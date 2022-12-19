@@ -127,13 +127,37 @@ pipeline {
                 ) 
             }
         }
-        stage('Unit Testing') {
+        stage('Unit Testing EDU Board') {
             when { anyOf {branch "release"; branch "test"; branch "feature-*"} }
             steps {
                 echo 'make test'
             }
         }
-        stage('Coverage Testing') {
+        stage('Unit Testing EDU FlatSat') {
+            when { anyOf {branch "release"; branch "test"; branch "feature-*"} }
+            steps {
+                echo 'make test'
+            }
+        }
+        stage('Unit Testing EDU Rover') {
+            when { anyOf {branch "release"; branch "test"; branch "feature-*"} }
+            steps {
+                echo 'make test'
+            }
+        }
+        stage('Coverage Testing EDU Board') {
+            when { anyOf {branch "release"; branch "test"; branch "feature-*"} }
+            steps {
+                echo 'make icov'
+            }
+        }
+        stage('Coverage Testing EDU FlatSat') {
+            when { anyOf {branch "release"; branch "test"; branch "feature-*"} }
+            steps {
+                echo 'make icov'
+            }
+        }
+        stage('Coverage Testing EDU Rover') {
             when { anyOf {branch "release"; branch "test"; branch "feature-*"} }
             steps {
                 echo 'make icov'
