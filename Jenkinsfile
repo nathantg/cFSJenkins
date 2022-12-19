@@ -56,7 +56,7 @@ pipeline {
             }
         }
         stage('Deploy EDU Board') {     
-            when { anyOf {branch "release"; branch "test"} }
+            when { anyOf {branch "release"} }
             steps {
                 sshPublisher(
                     continueOnError: false, failOnError: true,
@@ -80,7 +80,7 @@ pipeline {
             }
         }
         stage('Deploy EDU FlastSat') {     
-            when { anyOf {branch "release"; branch "test"} }
+            when { anyOf {branch "release"} }
             steps {
                 sshPublisher(
                     continueOnError: false, failOnError: true,
@@ -104,7 +104,7 @@ pipeline {
             }
         }
         stage('Deploy EDU Rover') {     
-            when { anyOf {branch "release"; branch "test"} }
+            when { anyOf {branch "release"} }
             steps {
                 sshPublisher(
                     continueOnError: false, failOnError: true,
@@ -128,37 +128,37 @@ pipeline {
             }
         }
         stage('Unit Testing EDU Board') {
-            when { anyOf {branch "release"; branch "test"; branch "feature-*"} }
+            when { anyOf {branch "release"} }
             steps {
                 echo 'make test'
             }
         }
         stage('Unit Testing EDU FlatSat') {
-            when { anyOf {branch "release"; branch "test"; branch "feature-*"} }
+            when { anyOf {branch "release"} }
             steps {
                 echo 'make test'
             }
         }
         stage('Unit Testing EDU Rover') {
-            when { anyOf {branch "release"; branch "test"; branch "feature-*"} }
+            when { anyOf {branch "release"} }
             steps {
                 echo 'make test'
             }
         }
         stage('Coverage Testing EDU Board') {
-            when { anyOf {branch "release"; branch "test"; branch "feature-*"} }
+            when { anyOf {branch "release"} }
             steps {
                 echo 'make icov'
             }
         }
         stage('Coverage Testing EDU FlatSat') {
-            when { anyOf {branch "release"; branch "test"; branch "feature-*"} }
+            when { anyOf {branch "release"} }
             steps {
                 echo 'make icov'
             }
         }
         stage('Coverage Testing EDU Rover') {
-            when { anyOf {branch "release"; branch "test"; branch "feature-*"} }
+            when { anyOf {branch "release"} }
             steps {
                 echo 'make icov'
             }
