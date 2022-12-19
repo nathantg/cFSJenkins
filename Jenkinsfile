@@ -60,25 +60,12 @@ pipeline {
         stage('Deploy') {     
             when { anyOf {branch "release"; branch "test"; branch "feature-*"; branch "dev-nathan"; branch "sonarqube"} }
             steps {
-                script {
-                    def remote = [:]
-                    remote.name = 'Beaglebone'
-                    remote.host = '192.168.8.24'
-                    remote.user = 'debian'
-                    remote.passwaord = 'temppwd'
-                    remote.allowAnyHosts = true
-                    
-                    sshCommand remote:remote, command: "cd"
-                }
-                //sh 'scp -r build debian@192.168.8.24:/home/debian/nathan/lrm'
-                /*
                 sshPublisher(
                     continueOnError: false, failOnError: true,
                     publishers: [
                         sshPublisherDesc(configName: DEPLOY_TARGET_1, 
                                          transfers: [
                                              sshTransfer(cleanRemote: false, excludes: '',
-                                                         //execCommand: 'sh ./core-cpu1',
                                                          execTimeout: 120000, 
                                                          flatten: false, 
                                                          makeEmptyDirs: false, 
@@ -98,11 +85,11 @@ pipeline {
                                                          remoteDirectory: '${REMOTE_DIR}/build/exe/cpu1', 
                                                          remoteDirectorySDF: false, 
                                                          removePrefix: '', 
-                                                         sourceFiles: '')                                         
+                                                         sourceFiles: '')       */                                  
                                          ], 
                                          usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false) 
                     ]
-                ) */
+                ) 
             }
         }
         stage('Unit Testing') {
