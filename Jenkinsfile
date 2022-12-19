@@ -79,7 +79,7 @@ pipeline {
                                                          removePrefix: '', 
                                                          sourceFiles: SOURCE_DIR), 
                                              sshTransfer(cleanRemote: false, excludes: '',
-                                                         execCommand: 'ls',
+                                                         execCommand: './core-cpu1',
                                                          execTimeout: 120000, 
                                                          flatten: false, 
                                                          makeEmptyDirs: false, 
