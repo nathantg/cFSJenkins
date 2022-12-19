@@ -8,8 +8,7 @@ pipeline {
     environment {
         TO_PORT = '1238'
         ROVER_TYPE = 'lrm'
-        COMPILER = 'cpu1'
-        /* Change if location of cross compiler is changed */
+        TOOLCHAIN = 'cpu1'
         ARM_ROOT = '/home/canadensys/work/toolchains/gcc-linaro-6.5.0-2018.12-x86_64_arm-linux-gnueabihf/arm-linux-gnueabihf'
         /* Targets for build artifacts to be sent to via SSH */
         DEPLOY_TARGET_1 = 'Nathan Beaglebone'
@@ -33,7 +32,7 @@ pipeline {
         stage('Preparation') {
             steps {
                 sh 'make distclean'
-                sh 'make SIMUATION=$COMPILER ENABLE_UNIT_TESTS=true prep'
+                sh 'make SIMUATION=$TOOLCHAIN ENABLE_UNIT_TESTS=true prep'
                 sh '''
                   mkdir -p .sonar
                   curl -sSLo .sonar/build-wrapper-linux-x86.zip ${SONARQUBE_URL}/static/cpp/build-wrapper-linux-x86.zip 
