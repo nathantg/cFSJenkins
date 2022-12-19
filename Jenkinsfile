@@ -61,20 +61,8 @@ pipeline {
                 }
             }
         }
-        stage('Unit Testing') {
-            when { anyOf {branch "release"; branch "test"} }
-            steps {
-                echo 'make test'
-            }
-        }
-        stage('Coverage Testing') {
-            when { anyOf {branch "release"; branch "test"} }
-            steps {
-                echo 'make icov'
-            }
-        }
         stage('Deploy') {     
-            when { anyOf {branch "release"; branch "test"; branch "feature-*"; branch "dev-nathan"} }
+            when { anyOf {branch "release"; branch "test"; branch "feature-*"; branch "dev-nathan"; branch "sonarqube"} }
             steps {
                 //sh 'scp -r build debian@192.168.8.24:/home/debian/nathan/lrm'
                 sshPublisher(
@@ -108,6 +96,18 @@ pipeline {
                                          usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false) 
                     ]
                 ) 
+            }
+        }
+        stage('Unit Testing') {
+            when { anyOf {branch "release"; branch "test"} }
+            steps {
+                echo 'make test'
+            }
+        }
+        stage('Coverage Testing') {
+            when { anyOf {branch "release"; branch "test"} }
+            steps {
+                echo 'make icov'
             }
         }
     }
