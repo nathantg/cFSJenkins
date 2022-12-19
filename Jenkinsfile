@@ -8,7 +8,7 @@ pipeline {
     environment {
         TO_PORT = '1238'
         ROVER_TYPE = 'lrm'
-        COMPILER = 'cpu1'
+        COMPILER = 'native'
         /* Change if location of cross compiler is changed */
         //ARM_ROOT = '/home/canadensys/work/toolchains/gcc-linaro-6.5.0-2018.12-x86_64_arm-linux-gnueabihf/arm-linux-gnueabihf'
         ARM_ROOT = '/home/canadensys/work/toolchains/gcc-linaro-6.5.0-2018.12-x86_64_arm-linux-gnueabihf/arm-linux-gnueabihf'
