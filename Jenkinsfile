@@ -57,13 +57,42 @@ pipeline {
                 }
             }
         }
-        node {
-                def remote = [:]
-                remote.name = 'Beaglebone'
-                remote.host = '192.168.8.24'
-                remote.user = 'debian'
-                remote.password = 'temppwd'
-                remote.allowAnyHosts = true
+        stage('Deploy') {     
+            when { anyOf {branch "release"; branch "test"; branch "feature-*"; branch "dev-nathan"; branch "sonarqube"} }
+            steps {
+                //sh 'scp -r build debian@192.168.8.24:/home/debian/nathan/lrm'
+                sshPublisher(
+                    continueOnError: false, failOnError: true,
+                    publishers: [
+                        sshPublisherDesc(configName: DEPLOY_TARGET_1, 
+                                         transfers: [
+                                             sshTransfer(cleanRemote: false, excludes: '',
+                                                         //execCommand: 'sh ./core-cpu1',
+                                                         execTimeout: 120000, 
+                                                         flatten: false, 
+                                                         makeEmptyDirs: false, 
+                                                         noDefaultExcludes: false, 
+                                                         patternSeparator: '[, ]+', 
+                                                         remoteDirectory: REMOTE_DIR, 
+                                                         remoteDirectorySDF: false, 
+                                                         removePrefix: '', 
+                                                         sourceFiles: SOURCE_DIR)/*, 
+                                             sshTransfer(cleanRemote: false, excludes: '',
+                                                         execCommand: './core-cpu1',
+                                                         execTimeout: 120000, 
+                                                         flatten: false, 
+                                                         makeEmptyDirs: false, 
+                                                         noDefaultExcludes: false, 
+                                                         patternSeparator: '[, ]+', 
+                                                         remoteDirectory: '${REMOTE_DIR}/build/exe/cpu1', 
+                                                         remoteDirectorySDF: false, 
+                                                         removePrefix: '', 
+                                                         sourceFiles: '')       */                                    
+                                         ], 
+                                         usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false) 
+                    ]
+                ) 
+            }
         }
         stage('Unit Testing') {
             when { anyOf {branch "release"; branch "test"} }
