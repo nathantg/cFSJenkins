@@ -16,6 +16,7 @@ pipeline {
         DEPLOY_TARGET_1 = 'Nathan Beaglebone'
         DEPLOY_TARGET_2 = 'Beaglebone 2'
         DEPLOY_TARGET_3 = 'Beaglebone 3'
+        DEPLOY_TARGET_4 = 'Nathan Intel Board'
         /* Directory on the target relative to the user directory to send the build artifacts to */
         REMOTE_DIR = '/nathan/lrm/Jenkins_cFS_deploy'
         /* The directory relative to the Jenkins workspace where the files to be deployed to target are located */
@@ -63,7 +64,7 @@ pipeline {
                 sshPublisher(
                     continueOnError: false, failOnError: true,
                     publishers: [
-                        sshPublisherDesc(configName: DEPLOY_TARGET_1, 
+                        sshPublisherDesc(configName: DEPLOY_TARGET_4, 
                                          transfers: [
                                              sshTransfer(cleanRemote: false, excludes: '',
                                                          execTimeout: 120000, 
