@@ -35,30 +35,27 @@ pipeline {
             steps {
                 sh 'make distclean'
                 sh 'make SIMUATION=$COMPILER prep'
+                sh '''
+                  mkdir -p .sonar
+                  curl -sSLo .sonar/build-wrapper-linux-x86.zip ${SONARQUBE_URL}/static/cpp/build-wrapper-linux-x86.zip 
+                  unzip -o .sonar/build-wrapper-linux-x86.zip -d .sonar/
+                '''
             }
-        } 
+        }
         stage('Build') {
             steps {
-                sh 'make'
-                sh 'make install'
+                sh '.sonar/build-wrapper-linux-x86/build-wrapper-linux-x86-64 --out-dir bw-output make && make install'
             }
         }
         stage('Static Code Analysis') {
             when { anyOf {branch "release"; branch "test"; branch "sonarqube"} }
             steps {
-                echo 'Perform static code analysis'
-            }
-        }
-        stage('Unit Testing') {
-            when { anyOf {branch "release"; branch "test"} }
-            steps {
-                echo 'make test'
-            }
-        }
-        stage('Coverage Testing') {
-            when { anyOf {branch "release"; branch "test"} }
-            steps {
-                echo 'make icov'
+                script {
+                    def scannerHome = tool 'SonarScanner'; // Name of the SonarQube Scanner you created in "Global Tool Configuration" section
+                    withSonarQubeEnv() {
+                        sh "${scannerHome}/sonar-scanner-4.7.0.2747-linux/bin/sonar-scanner"
+                    }
+                }
             }
         }
         stage('Deploy') {     
@@ -96,6 +93,18 @@ pipeline {
                                          usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false) 
                     ]
                 ) 
+            }
+        }
+        stage('Unit Testing') {
+            when { anyOf {branch "release"; branch "test"} }
+            steps {
+                echo 'make test'
+            }
+        }
+        stage('Coverage Testing') {
+            when { anyOf {branch "release"; branch "test"} }
+            steps {
+                echo 'make icov'
             }
         }
     }
