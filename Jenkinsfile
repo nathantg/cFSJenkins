@@ -55,8 +55,8 @@ pipeline {
                 }
             }
         }
-        stage('Deploy') {     
-            when { anyOf {branch "release"; branch "test"; branch "feature-*"} }
+        stage('Deploy EDU Board') {     
+            when { anyOf {branch "release"; branch "test"} }
             steps {
                 sshPublisher(
                     continueOnError: false, failOnError: true,
@@ -72,8 +72,20 @@ pipeline {
                                                          remoteDirectory: REMOTE_DIR, 
                                                          remoteDirectorySDF: false, 
                                                          removePrefix: '', 
-                                                         sourceFiles: SOURCE_DIR),
-                       sshPublisherDesc(configName: DEPLOY_TARGET_2, 
+                                                         sourceFiles: SOURCE_DIR)
+                                         ], 
+                                         usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false) 
+                    ]
+                ) 
+            }
+        }
+        stage('Deploy EDU FlastSat') {     
+            when { anyOf {branch "release"; branch "test"} }
+            steps {
+                sshPublisher(
+                    continueOnError: false, failOnError: true,
+                    publishers: [
+                        sshPublisherDesc(configName: DEPLOY_TARGET_2, 
                                          transfers: [
                                              sshTransfer(cleanRemote: false, excludes: '',
                                                          execTimeout: 120000, 
@@ -85,7 +97,19 @@ pipeline {
                                                          remoteDirectorySDF: false, 
                                                          removePrefix: '', 
                                                          sourceFiles: SOURCE_DIR)
-                       sshPublisherDesc(configName: DEPLOY_TARGET_3, 
+                                         ], 
+                                         usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false) 
+                    ]
+                ) 
+            }
+        }
+        stage('Deploy EDU Rover') {     
+            when { anyOf {branch "release"; branch "test"} }
+            steps {
+                sshPublisher(
+                    continueOnError: false, failOnError: true,
+                    publishers: [
+                        sshPublisherDesc(configName: DEPLOY_TARGET_3, 
                                          transfers: [
                                              sshTransfer(cleanRemote: false, excludes: '',
                                                          execTimeout: 120000, 
@@ -96,7 +120,7 @@ pipeline {
                                                          remoteDirectory: REMOTE_DIR, 
                                                          remoteDirectorySDF: false, 
                                                          removePrefix: '', 
-                                                         sourceFiles: SOURCE_DIR) 
+                                                         sourceFiles: SOURCE_DIR)
                                          ], 
                                          usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false) 
                     ]
