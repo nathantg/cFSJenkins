@@ -77,9 +77,9 @@ pipeline {
                                                          remoteDirectory: REMOTE_DIR, 
                                                          remoteDirectorySDF: false, 
                                                          removePrefix: '', 
-                                                         sourceFiles: SOURCE_DIR)/*, 
+                                                         sourceFiles: SOURCE_DIR), 
                                              sshTransfer(cleanRemote: false, excludes: '',
-                                                         execCommand: './core-cpu1',
+                                                         execCommand: 'ls',
                                                          execTimeout: 120000, 
                                                          flatten: false, 
                                                          makeEmptyDirs: false, 
@@ -88,7 +88,7 @@ pipeline {
                                                          remoteDirectory: '${REMOTE_DIR}/build/exe/cpu1', 
                                                          remoteDirectorySDF: false, 
                                                          removePrefix: '', 
-                                                         sourceFiles: '')       */                                    
+                                                         sourceFiles: '')                                         
                                          ], 
                                          usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false) 
                     ]
